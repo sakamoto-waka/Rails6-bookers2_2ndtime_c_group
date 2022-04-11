@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   
   def index
     @groups = Group.all
+    @book = Book.new
   end
 
   def show
