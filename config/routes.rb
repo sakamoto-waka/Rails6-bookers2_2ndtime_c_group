@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
   resources :groups do
     get 'join' => 'groups#join'
+    # resourcesのdestroyとかぶってるので名前を変えて新たなルーティング
+    # ↑のはグループメンバーを消す、↓はグループを消す
+    delete 'group_destroy' => 'groups#group_destroy'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
