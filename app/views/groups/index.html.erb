@@ -1,2 +1,16 @@
-<h1>Groups#index</h1>
-<p>Find me in app/views/groups/index.html.erb</p>
+<h1>Groups</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>グループ名</th>
+      <th>紹介文</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= render 'groups/index', groups: @groups %></td>
+    </tr>
+  </tbody>
+</table>

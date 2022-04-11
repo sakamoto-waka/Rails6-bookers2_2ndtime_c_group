@@ -1,0 +1,8 @@
+<% groups.each do |group| %>
+  <td><%= image_tag group.group_image, size: '50, 50' %></td>
+  <td><%= group.name %></td>
+  <td><%= group.introduction %></td>
+  <% if current_user.id == owner_id %>
+    <%= link_to 'Edit', edit_group_path(group), class: "btn btn-success" %>
+  <% end %>
+<% end%>
