@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
   get "search" => "searches#search"
-  resources :groups, exept: :destroy
+  resources :groups, exept: :destroy do
+    get 'join' => 'groups#join'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
