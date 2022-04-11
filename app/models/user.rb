@@ -9,7 +9,9 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_one_attached :profile_image
   has_many :group_users, dependent: :destroy
-  has_many:groups, through: :destroy
+  has_many :groups, through: :destroy
+  # オーナはたくさんのグループを持つ、:groupsは使われているためこの名前に
+  has_many :owned_groups, class_name: 'Group', dependent: :destroy
 
   # Relationshipの中のカラムを区別するために,
   # 実質２分割[relationships(中身はfollower_id)とreverse_of_relationships(中身はfollowed_id)]する
