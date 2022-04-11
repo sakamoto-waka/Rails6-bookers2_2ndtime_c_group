@@ -3,7 +3,7 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'users/info', user: current_user %>
-  
+
       <h2 class="mt-3">New book</h2>
       <%= render 'books/form', book: @book %>
     </div>
@@ -12,21 +12,25 @@
       <%= link_to 'グループ一覧へ', groups_path %>
       <table class="table table-hover">
         <tr>
-          <td><%= image_tag @group.get_group_image, size: '100x100' %></td>  
+          <td><%= image_tag @group.get_group_image, size: '100x100' %></td>
           <td><%= link_to @group.name, group_path(@group) %></td>
           <td><%= @group.introduction %></td>
           <td><%= @group.users.count %></td>
           <% if current_page?(group_path(@group)) %>
             <% if @group.owner_id == current_user.id %>
               <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-success" %></td>
+              <td><%= link_to 'Destroy group', group_group_destroy_path(@group),
+                                               method: :delete,
+                                               data: { confirm: '本当にに削除しますか？' },
+                                               class: "btn btn-sm btn-danger" %></td>
             <% elsif @group.users.include?(current_user) %>
               <td><%= link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-danger" %></td>
-            <% else %>  
+            <% else %>
               <td><%= link_to 'Join this group', group_join_path(@group), class: "btn btn-success" %></td>
             <% end %>
           <% end %>
         </tr>
-      </table>  
-    </div>  
-  </div>  
-</div>  
+      </table>
+    </div>
+  </div>
+</div>
