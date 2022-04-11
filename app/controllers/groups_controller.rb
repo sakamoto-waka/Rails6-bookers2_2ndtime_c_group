@@ -46,6 +46,12 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
   
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+    redirect_to @group
+  end
+  
   private
     
     def group_params
