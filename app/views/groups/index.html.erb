@@ -20,11 +20,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <% @groups.each do |group| %>
-              <%= render 'groups/index', group: group %>
-            <% end%>
-          </tr>
+          <% @groups.each do |group| %>
+            <%= render 'groups/index', group: group %>
+          <% end %>
         </tbody>
       </table>
     </div>
