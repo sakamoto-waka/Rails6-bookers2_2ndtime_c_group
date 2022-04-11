@@ -17,12 +17,13 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @group = Group.new(group_params)
+    @group = current_user.owned_groups.new(group_params)
+    # group_userにも値が必要なため残す
     @group.owner_id = current_user.id
     # グループのメンバーに自分を含める記述
     @group.users << current_user
     if @group.save
-      redirect_to groups_path
+      redirect_to group_path(@group)
     else
       render :new
     end
