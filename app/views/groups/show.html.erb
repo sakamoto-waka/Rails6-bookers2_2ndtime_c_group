@@ -9,8 +9,23 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h1>Groups Detail</h1>
+      <%= link_to 'グループ一覧へ', groups_path %>
       <table class="table table-hover">
-        <%= render 'groups/index', group: @group %>
+        <tr>
+          <td><%= image_tag @group.get_group_image, size: '100x100' %></td>  
+          <td><%= link_to @group.name, group_path(@group) %></td>
+          <td><%= @group.introduction %></td>
+          <td><%= @group.users.count %></td>
+          <% if current_page?(group_path(@group)) %>
+            <% if @group.owner_id == current_user.id %>
+              <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-success" %></td>
+            <% elsif @group.users.include?(current_user) %>
+              <td><%= link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-danger" %></td>
+            <% else %>  
+              <td><%= link_to 'Join this group', group_join_path(@group), class: "btn btn-success" %></td>
+            <% end %>
+          <% end %>
+        </tr>
       </table>  
     </div>  
   </div>  
