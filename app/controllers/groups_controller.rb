@@ -60,6 +60,20 @@ class GroupsController < ApplicationController
     end
   end
   
+  def new_mail
+    @group = Group.find(params[:group_id])
+  end
+  
+  def send_mail
+    @group = Group.find(params[:group_id])
+    group_users = @group.users
+    # 自分がフォームで書いたものが取得される
+    @mail_title = params[:mail_title]
+    @mail_content = params[:mail_content]
+    # contact_mailer.rbにsend_mail methodがある
+    ContactMailer.send_mail(@mail_title, @mail_content, group_users).deliver
+  end
+  
   private
     
     def group_params
