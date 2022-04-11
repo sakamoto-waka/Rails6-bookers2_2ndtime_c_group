@@ -10,7 +10,9 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= render 'groups/index', groups: @groups %></td>
+      <% @groups.each do |group| %>
+        <%= render 'groups/index', group: group %>
+      <% end%>
     </tr>
   </tbody>
 </table>
