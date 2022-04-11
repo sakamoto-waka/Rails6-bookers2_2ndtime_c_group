@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'グループオーナーだfrom@example.com'
+  default from: ENV['KEY']
   layout 'mailer'
 end
