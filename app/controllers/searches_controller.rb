@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  
   before_action :authenticate_user!
   def search
     @range = params[:range]
@@ -11,4 +12,5 @@ class SearchesController < ApplicationController
       @records = Book.looks(@search, @word)
     end
   end
+  
 end
